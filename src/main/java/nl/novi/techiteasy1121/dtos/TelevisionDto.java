@@ -21,6 +21,8 @@ public class TelevisionDto {
     private Integer originalStock;
     private Integer sold;
 
+    public RemoteControllerDto remoteControllerDto;
+
     public TelevisionDto () {
 
     }
@@ -45,8 +47,6 @@ public class TelevisionDto {
         this.sold = sold;
     }
 
-    public static TelevisionDto fromTelevision(TelevisionDto television) {
-    }
 
     public Long getId() {
         return id;
@@ -183,6 +183,8 @@ public class TelevisionDto {
     public void setSold(Integer sold) {
         this.sold = sold;
     }
+
+    // dit moet in de service laag!
 
 //    public static fromTelevision(Television television) {
 //        var dto = new TelevisionDto();

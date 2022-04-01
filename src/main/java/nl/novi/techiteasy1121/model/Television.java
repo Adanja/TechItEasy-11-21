@@ -1,9 +1,6 @@
 package nl.novi.techiteasy1121.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 @Entity
 public class Television {
@@ -28,7 +25,22 @@ public class Television {
     Integer sold;
 
     @OneToOne
-    Television television;
+    RemoteController remoteController;
+
+    public RemoteController getRemoteController() {
+        return remoteController;
+    }
+
+    public void setRemoteController(RemoteController remoteController) {
+        this.remoteController = remoteController;
+    }
+
+    @ManyToOne
+    CIModule ciModule;
+
+    @ManyToMany
+    WallBracket wallBracket;
+
 
     // default constructor
     public Television() {}

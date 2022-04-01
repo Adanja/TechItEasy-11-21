@@ -1,6 +1,8 @@
 package nl.novi.techiteasy1121.controllers;
 
+import nl.novi.techiteasy1121.dtos.IdInputDto;
 import nl.novi.techiteasy1121.dtos.TelevisionDto;
+import nl.novi.techiteasy1121.model.Television;
 import nl.novi.techiteasy1121.services.TelevisionService;
 import nl.novi.techiteasy1121.services.TelevisionServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,14 +20,12 @@ public class TelevisionsController {
     private TelevisionServiceImpl televisionService;
 
     @Autowired //Doet dit iets? > Communiceren met je service laag??
+    // TelevisionService televisionService; Waarom kan ik dit niet toevoegen?
 //    TelevisionDto televisionDto;
     public TelevisionsController(TelevisionServiceImpl televisionService){
         this.televisionService = televisionService;
-    };
+    }
 
-//    public TelevisionsController(TelevisionService televisionService) {
-//        this.televisionService = televisionService;
-//    }
 
 
 
@@ -60,17 +60,23 @@ public class TelevisionsController {
         return dto;
     }
 
-//    // Delete one
-    @DeleteMapping("/{id}")
-    public TelevisionDto deleteTV(@PathVariable int id) {
-        return ;
+    //Put Request voor RemoteController
+    @PutMapping ("/{id}/remotecontroller")
+    public TelevisionDto updateRemoteController(@PathVariable Television id, @RequestBody IdInputDto remoteControllerId) {
+        var dto = updateRemoteController(id, remoteControllerId);
+        return dto;
     }
-//
-//    // Deze heb ik gejat: Is deze extra of was ik hem vergeten
+
+    // Delete one TV:
+    @DeleteMapping("/{id}")
+    public void deleteTelevision(@PathVariable ("id") Long id) {
+        televisionService.deleteTelevision(id);
+    }
+
     @GetMapping("?branch={branch}")
     public TelevisionDto getAllTelevisions(@RequestParam String brand) {
-        return ;
-
+        var dto = getAllTelevisions(brand);
+        return dto;
     }
 
 
